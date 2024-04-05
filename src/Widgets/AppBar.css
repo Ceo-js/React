@@ -21,12 +21,12 @@ appbar > home > bar-options {
    display: grid;
    place-items: center;
    flex: .1;
-   background: 0005;
+   /* background: #0005; */
 }
 
 appbar > home > bar-center {
    display: grid;
    place-items: center;
-   background: #0009;
+   /* background: #0009; */
    flex: .8;
 }

@@ -55,3 +55,9 @@ a { text-decoration: transparent; }
       color: #16181c;
    }
 }
+
+
+
+grid { display: grid; }
+[center] { place-items: center; }
+[p] { padding: 2vw; }
