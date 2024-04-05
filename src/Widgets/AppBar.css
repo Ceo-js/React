@@ -1,0 +1,32 @@
+
+
+appbar {
+   display: block;
+   width: 100%;
+   height: 81px;
+   position: sticky;
+   top: 0; left: 0;
+   background: #16181c;
+}
+
+appbar > home {
+   display: flex;
+   width: 100%;
+   height: 100%;
+   margin: auto;
+   box-shadow: #0005 0 0 10px;
+}
+
+appbar > home > bar-options {
+   display: grid;
+   place-items: center;
+   flex: .1;
+   background: 0005;
+}
+
+appbar > home > bar-center {
+   display: grid;
+   place-items: center;
+   background: #0009;
+   flex: .8;
+}
