@@ -61,6 +61,8 @@ button {
    }
 } */
 
+      body { background: #000; }
+
       contatos {
          display: grid;
          grid-template-columns: repeat( 3, 1fr );
@@ -68,6 +70,8 @@ button {
          padding: 2rem;
          gap: 2rem;
          background: #f5f5f5;
+         background: #16181c;
+         color: #bbb;
       }
 
       @media screen and ( max-width: 950px ) {
@@ -127,18 +131,37 @@ button {
          telefone="( 13 ) 9 9199 - 9999"
          idade="28"
       ></card-lyh>
+
+      <ceo-card 
+         nome="Céo"
+         email="noah.kd@gmail.com"
+         telefone="( 13 ) 9 9199 - 9999"
+         idade="39"
+      ></ceo-card>
    </contatos>
 
    <script>
+      const _ = ( ...v ) => console.log( ...v );
+
+      function User( props ) {
+         this.id = props.id;
+         this.name = props.name;
+         this.email = props.email;
+
+         this.falar = function() {
+            _( `Oi meu nome é ${ this.name }` )
+         }
+      }
+
+      let pessoa = new User( { name: "Nome", id: 1, email: "email@email.com" } );
+
+      _( "oi", () => { pessoa.falar() } );
 
       /* == [ card lyh template ] 
       == == == == == == == == == */
       function Card( props ) {
-         const 
-            style = props.style
-            ,
-            template = props.template
-         ;
+            this.template = `${ props.style } ${ props.template }`;
+            this.tagName = props.tagName;
 
          class CardLyh extends HTMLElement {
             constructor() {
@@ -165,54 +188,126 @@ button {
          
          return(
             window.customElements.define( 
-               "card-lyh", 
+               tagName,
                CardLyh 
             )
          );
       }
 
-      let 
-         style = `
-            <style>
-               card {
-                  display: block;
-                  border-radius: 13px;
-                  background: #fff;
-                  overflow: hidden;
-               }
+      const 
+         Lýh = { 
+            style: `
+               <style>
+                  card {
+                     display: block;
+                     border-radius: 13px;
+                     background: #fff;
+                     background: #212329;
+                     overflow: hidden;
+                  }
 
-               card > header {
-                  display: grid;
-                  place-items: center;
-                  padding: .5rem;
-                  background: #fff1;
-               }
-               nome {
-                  font-size: 1.5rem;
-                  font-weight: 700;
-               }
+                  card > header {
+                     display: grid;
+                     place-items: center;
+                     padding: .5rem;
+                     background: #fff1;
+                     background: #fc0fc070;
+                  }
+                  nome {
+                     color: #fc0fc0;
+                     font-size: 1.5rem;
+                     font-weight: 700;
+                  }
 
-               card > home {
-                  display: grid;
-                  gap: .7rem;
-                  padding: 1rem;
-               }
-            </style>`
+                  card > home {
+                     display: grid;
+                     gap: .7rem;
+                     padding: 1rem;
+                  }
+               </style>`
+            ,
+            template: `
+               <card>
+                  <header>
+                     <nome></nome>
+                  </header>
+                  <home>
+                     <email><b>email: </b></email>
+                     <telefone><b>telefone: </b></telefone>
+                     <idade><b>idade: </b></idade>
+                  </home>
+               </card>`
+         }
          ,
-         template = `${ style }
-            <card>
-               <header>
-                  <nome></nome>
-               </header>
-               <home>
-                  <email><b>email: </b></email>
-                  <telefone><b>telefone: </b></telefone>
-                  <idade><b>idade: </b></idade>
-               </home>
-            </card>`
+         Céo = { 
+            style: `
+               <style>
+                  card {
+                     display: block;
+                     border-radius: 13px;
+                     background: #fff;
+                     background: #212329;
+                     clip-path: polygon(
+                        0 14px, 16px 0,
+                        calc( 100% - 16px ) 0, 100% 0,
+                        100% calc( 100% - 14px ), calc( 100% - 16px ) 100%,
+                        0 100%
+                     );
+                     padding: 10px;
+                     background: #1b1d22;
+                     overflow: hidden;
+                  }
+
+                  card > header {
+                     display: grid;
+                     place-items: center;
+                     padding: .5rem;
+                     background: #fff1;
+                     background: #2277ff70;
+                  }
+                  card > home {
+                     display: grid;
+                     gap: .7rem;
+                     padding: 1rem;
+                     background: #212329;
+                     clip-path: polygon(
+                        0 14px, 16px 0,
+                        calc( 100% - 16px ) 0, 100% 0,
+                        100% calc( 100% - 14px ), calc( 100% - 16px ) 100%,
+                        0 100%
+                     );
+                  }
+                  nome {
+                     font-size: 1.5rem;
+                     font-weight: 700;
+                     color: #2277ff;
+                  } 
+
+                  home-page, home-page > * {
+                     display: block;
+                  }
+               </style>`
+            ,
+            template: `
+               <card>
+                  <home>
+                     <header>
+                        <nome></nome>
+                     </header>
+                     <home-page>
+                        <email><b>email: </b></email>
+                        <telefone><b>telefone: </b></telefone>
+                        <idade><b>idade: </b></idade>
+                     </home-page>
+                  </home>
+               </card>`
+         }
       ;
 
-      Card( { style, template } );
+      Card( { style: Lýh.style, template: Lýh.template, tagName: "card-lyh" } );
+
+      Card( { style: Céo.style, template: Céo.template, tagName: "ceo-card" } );
+
 
    </script>
 </body>
