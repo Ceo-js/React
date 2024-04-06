@@ -1,8 +1,6 @@
 
 
 import React, { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import AppBar from "./Widgets/AppBar.jsx";
 import Views from "./Views";
@@ -10,25 +8,46 @@ import Routes from "./Routes";
 
 
 export default function App() {
-   const [ count, setCount ] = useState(0);
-   let [ view, setView ] = useState( 
-      <Views.Home onExit={ 
-         data => { setView( data ) } 
-      } /> 
-   );
+   const 
+      [ count, setCount ] = useState( 0 )
+      ,
+      [ view, setView ] = useState( 
+         <Views.Home 
+            onExit={ 
+               data => { setView( data ) } 
+            }
+            title="Homepage" 
+         /> 
+      )
+      ,
+      [ observer, setObserver ] = useState( "home" )
+      ,
+      [ route, setRoute ] = useState( "/" )
+   ;
 
-   if( view == Views.About ) {
-      view = <Views.About />;
-   } else if( view == Views.Home ) {
-      view = ( <Views.Home onExit={ 
-         data => { 
-            setView( data ); 
-         } 
-      }/> );
-   }
 
    return( <>
       <AppBar />
+      <input id="inputViewName" type="text" placeholder="View name" />
+
+      <menu>
+         <button
+            onClick={ () => {
+               setView( data => <Views.Home title="Home Page" /> );
+            } }
+         >
+            Home View
+         </button>
+         <button
+            onClick={ () => {
+               setView( data => <Views.About /> );
+            } }
+         >
+            About View
+         </button>
+      </menu>
+
+      <hr />
       <button onClick={ () => { 
          setView( <Views.About onExit={ data => setView( data ) } /> ) 
       } }>

@@ -61,6 +61,26 @@ button {
    }
 } */
 
+      contatos {
+         display: grid;
+         grid-template-columns: repeat( 3, 1fr );
+         margin: auto;
+         padding: 2rem;
+         gap: 2rem;
+         background: #f5f5f5;
+      }
+
+      @media screen and ( max-width: 950px ) {
+         contatos {
+            grid-template-columns: repeat( 2, 1fr );
+         }
+      }
+
+      @media screen and ( max-width: 680px ) {
+         contatos {
+            grid-template-columns: repeat( 1, 1fr );
+         }
+      }
    </style>
 </head>
 <body>
@@ -68,5 +88,132 @@ button {
    <button>
       oi
    </button>
+
+   <contatos>
+      <card-lyh 
+         nome="Lýh"
+         email="noely.gangello@gmail.com"
+         telefone="( 13 ) 9 9199 - 9999"
+         idade="28"
+      ></card-lyh>
+      <card-lyh 
+         nome="Lýh"
+         email="noely.gangello@gmail.com"
+         telefone="( 13 ) 9 9199 - 9999"
+         idade="28"
+      ></card-lyh>
+      <card-lyh 
+         nome="Lýh"
+         email="noely.gangello@gmail.com"
+         telefone="( 13 ) 9 9199 - 9999"
+         idade="28"
+      ></card-lyh>
+
+      <card-lyh 
+         nome="Lýh"
+         email="noely.gangello@gmail.com"
+         telefone="( 13 ) 9 9199 - 9999"
+         idade="28"
+      ></card-lyh>
+      <card-lyh 
+         nome="Lýh"
+         email="noely.gangello@gmail.com"
+         telefone="( 13 ) 9 9199 - 9999"
+         idade="28"
+      ></card-lyh>
+      <card-lyh 
+         nome="Lýh"
+         email="noely.gangello@gmail.com"
+         telefone="( 13 ) 9 9199 - 9999"
+         idade="28"
+      ></card-lyh>
+   </contatos>
+
+   <script>
+
+      /* == [ card lyh template ] 
+      == == == == == == == == == */
+      function Card( props ) {
+         const 
+            style = props.style
+            ,
+            template = props.template
+         ;
+
+         class CardLyh extends HTMLElement {
+            constructor() {
+               super();
+
+               let tag = document.createElement( "template" );
+
+               tag.innerHTML = template;
+
+               this.attachShadow( { mode: "open" } );
+               this.shadowRoot.append( tag.content.cloneNode( true ) );
+               this.shadowRoot.querySelector( "nome" ).innerHTML += this.getAttribute( "nome" );
+               this.shadowRoot.querySelector( "email" ).innerHTML += this.getAttribute( "email" );
+               this.shadowRoot.querySelector( "telefone" ).innerHTML += this.getAttribute( "telefone" );
+               this.shadowRoot.querySelector( "idade" ).innerHTML += this.getAttribute( "idade" );
+            } 
+            connectedCallback() {
+               this.render();
+            }
+            render() {
+               console.log( "card-lyh" );
+            }
+         }
+         
+         return(
+            window.customElements.define( 
+               "card-lyh", 
+               CardLyh 
+            )
+         );
+      }
+
+      let 
+         style = `
+            <style>
+               card {
+                  display: block;
+                  border-radius: 13px;
+                  background: #fff;
+                  overflow: hidden;
+               }
+
+               card > header {
+                  display: grid;
+                  place-items: center;
+                  padding: .5rem;
+                  background: #fff1;
+               }
+               nome {
+                  font-size: 1.5rem;
+                  font-weight: 700;
+               }
+
+               card > home {
+                  display: grid;
+                  gap: .7rem;
+                  padding: 1rem;
+               }
+            </style>`
+         ,
+         template = `${ style }
+            <card>
+               <header>
+                  <nome></nome>
+               </header>
+               <home>
+                  <email><b>email: </b></email>
+                  <telefone><b>telefone: </b></telefone>
+                  <idade><b>idade: </b></idade>
+               </home>
+            </card>`
+      ;
+
+      Card( { style, template } );
+
+   </script>
 </body>
 </html>

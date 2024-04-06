@@ -56,6 +56,10 @@ a { text-decoration: transparent; }
    }
 }
 
+menu {
+   display: flex;
+   gap: 10px;
+}
 
 
 grid { display: grid; }

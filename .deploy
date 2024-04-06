@@ -1,0 +1,3 @@
+
+
+git push -f git@github.com:ceo-js/vite-app.git main:gh-pages
